@@ -44,7 +44,7 @@ h1 { font-size: 2.4em; margin-bottom: 12px; font-weight: 700; letter-spacing: -0
 .tagline { font-size: 1.15em; opacity: 0.9; }
 .container { max-width: 900px; margin: 0 auto; padding: 0 20px 56px; }
 .shots {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: 18px; padding: 8px 0 30px;
 }
 .shots img {
