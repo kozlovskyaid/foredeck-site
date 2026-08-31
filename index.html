@@ -90,7 +90,8 @@ a { color: #0b7fa0; }
 <div class="feature"><div class="feature-icon">🔍</div><h3>The status that explains itself</h3><p>CrashLoopBackOff, ImagePullBackOff, Init:0/2, Not Ready — the container-level reason, not just “Running”.</p></div>
 <div class="feature"><div class="feature-icon">📜</div><h3>Logs that follow</h3><p>Stream any container, switch between them, read the previous instance after a crash, and filter as it scrolls.</p></div>
 <div class="feature"><div class="feature-icon">🔐</div><h3>Credentials stay on the device</h3><p>Tokens and client certificates live in the iOS Keychain. Foredeck talks only to the clusters you add.</p></div>
-<div class="feature"><div class="feature-icon">🛡️</div><h3>Actions you are allowed to take</h3><p>Scale, restart, delete and cordon appear only after the cluster confirms your credential may do them. Any cluster can be marked read-only.</p></div></div>
+<div class="feature"><div class="feature-icon">🛡️</div><h3>Actions you are allowed to take</h3><p>Scale, restart, delete and cordon appear only after the cluster confirms your credential may do them. Any cluster can be marked read-only.</p></div>
+<div class="feature"><div class="feature-icon">✨</div><h3>A demo cluster, built in</h3><p>No cluster to hand? One runs on your device, with a few things going wrong in it, so you can see everything before you connect anything.</p></div></div>
     </div>
 
     <div class="card">
@@ -101,7 +102,7 @@ a { color: #0b7fa0; }
             <code>gcloud</code> does not carry a token — it carries a command to run for
             one, and iOS has no way to run a command-line tool. Client certificates and
             bearer tokens work everywhere. Foredeck says so at import and shows you the
-            two <code>kubectl</code> commands that produce a ServiceAccount token.
+            commands for EKS, GKE, AKS, DigitalOcean, Yandex Cloud and hand-built clusters.
         </div>
         <p style="height:14px"></p>
         <div class="note heads-up">

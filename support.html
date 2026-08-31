@@ -73,6 +73,12 @@ a { color: #0b7fa0; }
 <div class="container"><div class="card legal">
 <a class="back" href="index.html">&larr; Back to Foredeck</a>
 
+<h2>No cluster to try it on?</h2>
+<p>Foredeck has one built in. On the Clusters screen, tap <strong>Explore a Demo Cluster</strong>:
+it runs entirely on your device, is connected to nothing, and has a few things going wrong in
+it on purpose — a crash-looping pod, a node under memory pressure, a rollout half finished —
+so every screen has something real to show.</p>
+
 <h2>Get in touch</h2>
 <p>Email <a href="mailto:kozlovskyaid@icloud.com">kozlovskyaid@icloud.com</a>. Include your iOS version, the
 Foredeck version from Settings &rarr; About, and what the cluster is — a managed
@@ -84,17 +90,70 @@ inside its own network, and from a phone an unreachable network and a wrong addr
 look identical. Connect the VPN or join the same network, then open the cluster again.</p>
 
 <h2>“This context cannot be used on a phone”</h2>
-<p>The kubeconfig asks a command-line tool to produce a token each time it is used —
-<code>aws eks get-token</code>, <code>gke-gcloud-auth-plugin</code>, <code>kubelogin</code>
-— and iOS cannot run one. Create a ServiceAccount instead:</p>
+<p>Your kubeconfig asks a command-line tool to produce a token each time it is used —
+<code>aws eks get-token</code>, <code>gke-gcloud-auth-plugin</code>, <code>kubelogin</code>,
+<code>doctl</code>, <code>yc k8s create-token</code>. iOS has no way to run one, so that
+context is refused at import rather than failing later as a connection error.</p>
+
+<p>The remedy is the same everywhere: a ServiceAccount token, which is self-contained.
+Foredeck &rarr; Settings &rarr; <strong>Credentials</strong> writes the whole file for you
+and lets you copy it — pick your provider there. The commands are below too.</p>
+
+<h2>Two providers where you may not need a token at all</h2>
+<p><strong>Azure AKS</strong>: if the cluster still has local accounts enabled,
+<code>az aks get-credentials --admin</code> gives a client certificate, which works on iOS
+as it is. Try that first.</p>
+<p><strong>DigitalOcean</strong>: <code>doctl kubernetes cluster kubeconfig show &lt;cluster&gt;</code>
+prints a config with the token already inside — that one imports directly. Add
+<code>--expiry-seconds 0</code> or it stops working after a week.</p>
+
+<h2>Making a ServiceAccount token</h2>
+<p>Two steps everywhere. First the account:</p>
 <p><code>kubectl create serviceaccount foredeck -n default</code>
-<br><code>kubectl create clusterrolebinding foredeck --clusterrole=view --serviceaccount=default:foredeck</code>
-<br><code>kubectl create token foredeck -n default --duration=8760h</code></p>
-<p>Then put that token into a kubeconfig together with the cluster's
-<code>server</code> and <code>certificate-authority-data</code>. Foredeck &rarr; Settings
-&rarr; “Making a credential that works” writes the whole file for you and lets you copy it.
-Use <code>--clusterrole=edit</code> instead of <code>view</code> if you want to be able to
-scale, restart and delete.</p>
+<br><code>kubectl create clusterrolebinding foredeck --clusterrole=view --serviceaccount=default:foredeck</code></p>
+<p>Use <code>--clusterrole=edit</code> instead of <code>view</code> if you want to be able to
+scale, restart, delete and edit from the phone. <code>view</code> is the safer default for
+something that lives in a pocket.</p>
+
+<p>Then the cluster's address and CA, which is the only part that differs:</p>
+
+<h2>Amazon EKS</h2>
+<p><code>SERVER=$(aws eks describe-cluster --name &lt;cluster&gt; --query cluster.endpoint --output text)</code>
+<br><code>CA=$(aws eks describe-cluster --name &lt;cluster&gt; --query cluster.certificateAuthority.data --output text)</code></p>
+<p>A cluster with a private-only endpoint is not reachable from a phone at all — it needs
+the public endpoint enabled, or a VPN into the VPC.</p>
+
+<h2>Google GKE</h2>
+<p><code>SERVER=https://$(gcloud container clusters describe &lt;cluster&gt; --zone &lt;zone&gt; --format='value(endpoint)')</code>
+<br><code>CA=$(gcloud container clusters describe &lt;cluster&gt; --zone &lt;zone&gt; --format='value(masterAuth.clusterCaCertificate)')</code></p>
+<p>Use <code>--region</code> instead of <code>--zone</code> for a regional cluster. A private
+cluster answers only inside its VPC: either authorise your address in the control plane's
+authorised networks, or reach it over a VPN.</p>
+
+<h2>Azure AKS</h2>
+<p><code>SERVER=https://$(az aks show -g &lt;resource-group&gt; -n &lt;cluster&gt; --query fqdn -o tsv)</code>
+<br><code>CA=$(kubectl config view --raw --minify -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')</code></p>
+
+<h2>Yandex Cloud</h2>
+<p><code>CLUSTER_ID=&lt;cluster-id&gt;</code>
+<br><code>SERVER=$(yc managed-kubernetes cluster get --id $CLUSTER_ID --format json | jq -r .master.endpoints.external_v4_endpoint)</code>
+<br><code>CA=$(yc managed-kubernetes cluster get --id $CLUSTER_ID --format json | jq -r .master.master_auth.cluster_ca_certificate | base64 | tr -d '
+')</code></p>
+<p>The cluster needs a public endpoint, or nothing outside the VPC — including your phone —
+can reach it. This is the same thing Yandex's own documentation calls a “static
+configuration file”.</p>
+
+<h2>Any other cluster</h2>
+<p>kubeadm, k3s, Talos and hand-built clusters usually hand out a client certificate, which
+works as it is. If you would rather use a scoped token, take the address and CA from the
+config you already have:</p>
+<p><code>SERVER=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')</code>
+<br><code>CA=$(kubectl config view --raw --minify -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')</code></p>
+
+<h2>Then write the file</h2>
+<p><code>TOKEN=$(kubectl create token foredeck -n default --duration=8760h)</code></p>
+<p>and put <code>$SERVER</code>, <code>$CA</code> and <code>$TOKEN</code> into a kubeconfig —
+Foredeck's Credentials screen prints the exact document, ready to copy.</p>
 
 <h2>“This context points at files on another machine”</h2>
 <p>The kubeconfig references paths like <code>/home/you/.kube/client.crt</code>. Re-export
