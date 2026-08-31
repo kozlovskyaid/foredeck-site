@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foredeck — Kubernetes Console — Your Kubernetes clusters, on your phone.</title>
+<meta name="description" content="Foredeck is a Kubernetes console for iPhone and iPad: live resource lists, streaming logs, and actions your credential is allowed to take. Everything stays on your device.">
+<link rel="icon" href="icon.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1d1d1f;
+    background: linear-gradient(180deg, #10445a 0%, #04161f 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+code, .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace; }
+.hero { text-align: center; padding: 64px 20px 36px; color: #fff; }
+.app-icon {
+    width: 116px; height: 116px; border-radius: 26px;
+    margin: 0 auto 26px; display: block;
+    box-shadow: 0 12px 44px rgba(0,0,0,0.42);
+}
+h1 { font-size: 2.4em; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.02em; }
+.tagline { font-size: 1.15em; opacity: 0.9; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 56px; }
+.shots {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px; padding: 8px 0 30px;
+}
+.shots img {
+    width: 100%; height: auto; border-radius: 20px; display: block;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.35);
+}
+.card {
+    background: #fff; border-radius: 18px; padding: 36px;
+    margin-bottom: 20px; box-shadow: 0 4px 22px rgba(0,0,0,0.16);
+}
+.card h2 { text-align: center; margin-bottom: 26px; font-size: 1.5em; letter-spacing: -0.01em; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+.feature { text-align: center; }
+.feature-icon { font-size: 34px; margin-bottom: 12px; }
+.feature h3 { font-size: 1.05em; margin-bottom: 6px; }
+.feature p { font-size: 0.94em; color: #6e6e73; }
+.note {
+    background: #e6f6fa; border-radius: 12px; padding: 18px 22px;
+    color: #0b5a6e; font-weight: 500; text-align: center;
+}
+.heads-up { background: #fff8e6; color: #7a5600; text-align: left; }
+.heads-up strong { display: block; margin-bottom: 6px; }
+.heads-up code {
+    background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-size: 0.92em;
+}
+.legal h2 { text-align: left; font-size: 1.15em; margin: 30px 0 8px; }
+.legal h2:first-of-type { margin-top: 0; }
+.legal p { margin-bottom: 12px; color: #3a3a3c; white-space: pre-wrap; }
+.legal .updated { color: #86868b; font-size: 0.9em; margin-top: 28px; }
+.back { display: inline-block; margin-bottom: 22px; color: #0b7fa0; text-decoration: none; font-size: 0.95em; }
+.back:hover { text-decoration: underline; }
+.links { text-align: center; padding: 12px 20px 40px; }
+.links a { color: rgba(255,255,255,0.88); text-decoration: none; margin: 0 14px; font-size: 0.95em; }
+.links a:hover { color: #fff; text-decoration: underline; }
+.trademark { color: rgba(255,255,255,0.55); font-size: 0.8em; text-align: center;
+    max-width: 640px; margin: 0 auto; padding: 0 20px 40px; line-height: 1.5; }
+a { color: #0b7fa0; }
+</style>
+</head>
+<body class="">
+
+<div class="hero">
+    <img class="app-icon" src="icon.png" alt="Foredeck app icon">
+    <h1>Foredeck</h1>
+    <p class="tagline">Your Kubernetes clusters, on your phone.</p>
+</div>
+
+<div class="container">
+    <div class="shots">
+        <img src="shots/01-overview.jpg" alt="Cluster overview: nodes ready, pods needing attention, recent warnings">
+        <img src="shots/02-pods.jpg" alt="Live pod list with per-container status">
+        <img src="shots/03-detail.jpg" alt="Pod detail with containers, restarts and events">
+        <img src="shots/04-logs.jpg" alt="Streaming container logs with errors highlighted">
+    </div>
+
+    <div class="card">
+        <h2>What it does</h2>
+        <div class="features"><div class="feature"><div class="feature-icon">🧭</div><h3>Every resource the cluster serves</h3><p>Workloads, network, configuration, storage and RBAC — plus your custom resources, which get the same lists, details and health as anything built in.</p></div>
+<div class="feature"><div class="feature-icon">📡</div><h3>Live, not refreshed</h3><p>Foredeck watches the API server and applies changes as they happen, the way a dashboard on your desk does.</p></div>
+<div class="feature"><div class="feature-icon">🔍</div><h3>The status that explains itself</h3><p>CrashLoopBackOff, ImagePullBackOff, Init:0/2, Not Ready — the container-level reason, not just “Running”.</p></div>
+<div class="feature"><div class="feature-icon">📜</div><h3>Logs that follow</h3><p>Stream any container, switch between them, read the previous instance after a crash, and filter as it scrolls.</p></div>
+<div class="feature"><div class="feature-icon">🔐</div><h3>Credentials stay on the device</h3><p>Tokens and client certificates live in the iOS Keychain. Foredeck talks only to the clusters you add.</p></div>
+<div class="feature"><div class="feature-icon">🛡️</div><h3>Actions you are allowed to take</h3><p>Scale, restart, delete and cordon appear only after the cluster confirms your credential may do them. Any cluster can be marked read-only.</p></div></div>
+    </div>
+
+    <div class="card">
+        <h2>Before you start</h2>
+        <div class="note heads-up">
+            <strong>Your credentials need to be self-contained.</strong>
+            A kubeconfig written by <code>aws eks update-kubeconfig</code> or by
+            <code>gcloud</code> does not carry a token — it carries a command to run for
+            one, and iOS has no way to run a command-line tool. Client certificates and
+            bearer tokens work everywhere. Foredeck says so at import and shows you the
+            two <code>kubectl</code> commands that produce a ServiceAccount token.
+        </div>
+        <p style="height:14px"></p>
+        <div class="note heads-up">
+            <strong>The cluster has to be reachable from your phone.</strong>
+            Control planes are rarely on the public internet. Connect your VPN — Tailscale,
+            WireGuard, whatever your company uses — and Foredeck will reach the address in
+            your kubeconfig.
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="note">
+            Foredeck runs entirely on your device and connects only to the clusters you add
+            yourself. Your kubeconfigs, tokens and keys stay here.
+        </div>
+    </div>
+</div>
+
+<div class="links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+</div>
+<p class="trademark">
+    Kubernetes is a registered trademark of The Linux Foundation. Foredeck is an
+    independent client and is not affiliated with, endorsed by or sponsored by
+    The Linux Foundation or the Kubernetes project.
+    <br>&copy; 2026 Andrew Kozlowskiy
+</p>
+</body>
+</html>

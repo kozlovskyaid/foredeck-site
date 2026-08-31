@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Foredeck</title>
+<meta name="description" content="Terms of use for Foredeck.">
+<link rel="icon" href="icon.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1d1d1f;
+    background: linear-gradient(180deg, #10445a 0%, #04161f 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+code, .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace; }
+.hero { text-align: center; padding: 64px 20px 36px; color: #fff; }
+.app-icon {
+    width: 116px; height: 116px; border-radius: 26px;
+    margin: 0 auto 26px; display: block;
+    box-shadow: 0 12px 44px rgba(0,0,0,0.42);
+}
+h1 { font-size: 2.4em; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.02em; }
+.tagline { font-size: 1.15em; opacity: 0.9; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 56px; }
+.shots {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px; padding: 8px 0 30px;
+}
+.shots img {
+    width: 100%; height: auto; border-radius: 20px; display: block;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.35);
+}
+.card {
+    background: #fff; border-radius: 18px; padding: 36px;
+    margin-bottom: 20px; box-shadow: 0 4px 22px rgba(0,0,0,0.16);
+}
+.card h2 { text-align: center; margin-bottom: 26px; font-size: 1.5em; letter-spacing: -0.01em; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+.feature { text-align: center; }
+.feature-icon { font-size: 34px; margin-bottom: 12px; }
+.feature h3 { font-size: 1.05em; margin-bottom: 6px; }
+.feature p { font-size: 0.94em; color: #6e6e73; }
+.note {
+    background: #e6f6fa; border-radius: 12px; padding: 18px 22px;
+    color: #0b5a6e; font-weight: 500; text-align: center;
+}
+.heads-up { background: #fff8e6; color: #7a5600; text-align: left; }
+.heads-up strong { display: block; margin-bottom: 6px; }
+.heads-up code {
+    background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-size: 0.92em;
+}
+.legal h2 { text-align: left; font-size: 1.15em; margin: 30px 0 8px; }
+.legal h2:first-of-type { margin-top: 0; }
+.legal p { margin-bottom: 12px; color: #3a3a3c; white-space: pre-wrap; }
+.legal .updated { color: #86868b; font-size: 0.9em; margin-top: 28px; }
+.back { display: inline-block; margin-bottom: 22px; color: #0b7fa0; text-decoration: none; font-size: 0.95em; }
+.back:hover { text-decoration: underline; }
+.links { text-align: center; padding: 12px 20px 40px; }
+.links a { color: rgba(255,255,255,0.88); text-decoration: none; margin: 0 14px; font-size: 0.95em; }
+.links a:hover { color: #fff; text-decoration: underline; }
+.trademark { color: rgba(255,255,255,0.55); font-size: 0.8em; text-align: center;
+    max-width: 640px; margin: 0 auto; padding: 0 20px 40px; line-height: 1.5; }
+a { color: #0b7fa0; }
+</style>
+</head>
+<body class="">
+<div class="hero"><h1>Terms of Use</h1><p class="tagline">Foredeck</p></div>
+<div class="container"><div class="card legal">
+<a class="back" href="index.html">&larr; Back to Foredeck</a>
+<h2>What this is</h2>
+<p>Foredeck is a read-and-control client for Kubernetes clusters. Andrew Kozlowskiy licenses it to you for personal or business use on Apple devices you own or control, on the terms below.</p>
+<h2>You are responsible for what you do to your clusters</h2>
+<p>Foredeck can change and delete objects in a cluster when the credential you supply allows it. Those actions take effect immediately and cannot be undone from the app: a deleted pod is deleted, a workload scaled to zero stops serving.
+
+You are responsible for the credentials you add, for the permissions they carry, and for the consequences of the actions you take with them. If you want a credential that can only read, bind its ServiceAccount to the view role; Foredeck&#x27;s read-only switch is a convenience on top of that, not a substitute for it.</p>
+<h2>Accuracy</h2>
+<p>Foredeck shows what the API server tells it, interpreted for a small screen. Interpretations can be wrong, a connection can drop while a list looks current, and a cluster can change between one screen and the next.
+
+Use it as an instrument, not as the only source of truth for an irreversible decision. It is provided as an operational tool and not as a guarantee about the state of your systems.</p>
+<h2>Warranty and liability</h2>
+<p>Foredeck is provided &quot;as is&quot;, without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose and non-infringement.
+
+To the fullest extent the law allows, the developer is not liable for indirect, incidental, special or consequential damages, or for loss of data, profits or business, arising from your use of Foredeck. Total liability is limited to the amount you paid for it.
+
+Some jurisdictions do not allow these limits; where that is so, they apply to the greatest extent permitted, and nothing here limits liability that cannot lawfully be limited.</p>
+<h2>The rest</h2>
+<p>You may not reverse-engineer, resell or redistribute Foredeck, except where that restriction is prohibited by law. All rights not granted are reserved.
+
+The Apple Media Services Terms apply to your purchase and download; where they conflict with these terms for that purpose, they prevail. Apple is not a party to these terms and has no obligation to provide support for Foredeck.
+
+These terms are governed by the laws of the Kingdom of Spain, without regard to conflict-of-law rules.
+
+Questions: kozlovskyaid@icloud.com. Last updated: 31 August 2026.</p>
+</div></div>
+<div class="links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+</div>
+<p class="trademark">
+    Kubernetes is a registered trademark of The Linux Foundation. Foredeck is an
+    independent client and is not affiliated with, endorsed by or sponsored by
+    The Linux Foundation or the Kubernetes project.
+    <br>&copy; 2026 Andrew Kozlowskiy
+</p>
+</body>
+</html>

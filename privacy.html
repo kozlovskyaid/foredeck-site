@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Foredeck</title>
+<meta name="description" content="How Foredeck handles your information: everything stays on your device, and it connects only to the clusters you add.">
+<link rel="icon" href="icon.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1d1d1f;
+    background: linear-gradient(180deg, #10445a 0%, #04161f 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+code, .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace; }
+.hero { text-align: center; padding: 64px 20px 36px; color: #fff; }
+.app-icon {
+    width: 116px; height: 116px; border-radius: 26px;
+    margin: 0 auto 26px; display: block;
+    box-shadow: 0 12px 44px rgba(0,0,0,0.42);
+}
+h1 { font-size: 2.4em; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.02em; }
+.tagline { font-size: 1.15em; opacity: 0.9; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 56px; }
+.shots {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px; padding: 8px 0 30px;
+}
+.shots img {
+    width: 100%; height: auto; border-radius: 20px; display: block;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.35);
+}
+.card {
+    background: #fff; border-radius: 18px; padding: 36px;
+    margin-bottom: 20px; box-shadow: 0 4px 22px rgba(0,0,0,0.16);
+}
+.card h2 { text-align: center; margin-bottom: 26px; font-size: 1.5em; letter-spacing: -0.01em; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+.feature { text-align: center; }
+.feature-icon { font-size: 34px; margin-bottom: 12px; }
+.feature h3 { font-size: 1.05em; margin-bottom: 6px; }
+.feature p { font-size: 0.94em; color: #6e6e73; }
+.note {
+    background: #e6f6fa; border-radius: 12px; padding: 18px 22px;
+    color: #0b5a6e; font-weight: 500; text-align: center;
+}
+.heads-up { background: #fff8e6; color: #7a5600; text-align: left; }
+.heads-up strong { display: block; margin-bottom: 6px; }
+.heads-up code {
+    background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-size: 0.92em;
+}
+.legal h2 { text-align: left; font-size: 1.15em; margin: 30px 0 8px; }
+.legal h2:first-of-type { margin-top: 0; }
+.legal p { margin-bottom: 12px; color: #3a3a3c; white-space: pre-wrap; }
+.legal .updated { color: #86868b; font-size: 0.9em; margin-top: 28px; }
+.back { display: inline-block; margin-bottom: 22px; color: #0b7fa0; text-decoration: none; font-size: 0.95em; }
+.back:hover { text-decoration: underline; }
+.links { text-align: center; padding: 12px 20px 40px; }
+.links a { color: rgba(255,255,255,0.88); text-decoration: none; margin: 0 14px; font-size: 0.95em; }
+.links a:hover { color: #fff; text-decoration: underline; }
+.trademark { color: rgba(255,255,255,0.55); font-size: 0.8em; text-align: center;
+    max-width: 640px; margin: 0 auto; padding: 0 20px 40px; line-height: 1.5; }
+a { color: #0b7fa0; }
+</style>
+</head>
+<body class="">
+<div class="hero"><h1>Privacy Policy</h1><p class="tagline">Foredeck</p></div>
+<div class="container"><div class="card legal">
+<a class="back" href="index.html">&larr; Back to Foredeck</a>
+<h2>The short version</h2>
+<p>Foredeck is a client for Kubernetes clusters you already have access to. It runs entirely on your device and talks to exactly one kind of server: the API server of a cluster you added yourself.
+
+Everything Foredeck stores — the list of clusters, their addresses, their credentials, your preferences — stays on this device.</p>
+<h2>What Foredeck stores on your device</h2>
+<p>• The clusters you add: the name you give them, the server address, the certificate authority from the kubeconfig, and your display preferences. These are written to Foredeck&#x27;s own folder, which is protected by iOS file protection and included in your device backup if you take one.
+
+• Cluster credentials: bearer tokens, usernames and passwords, and client certificates with their private keys. These are held in the iOS Keychain, marked so they stay on this device and are excluded from iCloud backups.
+
+Removing a cluster in Foredeck deletes both, including the keychain entries.</p>
+<h2>What leaves your device</h2>
+<p>Foredeck sends requests to the Kubernetes API servers you configure, over TLS, carrying the credentials you provided. That is the whole of its network activity, and every destination is one you typed in.
+
+The cluster&#x27;s replies — the state of your workloads, your logs, your events — are shown on screen and held in memory while you look at them. They are not written to disk and not sent anywhere else.</p>
+<h2>Diagnostics</h2>
+<p>Foredeck writes to the system log through Apple&#x27;s unified logging, which stays on your device unless you deliberately capture and share a sysdiagnose. Values that could identify your infrastructure are marked private and are redacted in those logs.
+
+The developer has no way to see any of it.</p>
+<h2>Others involved</h2>
+<p>Foredeck contains no analytics, no advertising and no third-party software development kits. Its only dependency is a YAML parser, which runs on your device and reads text.
+
+Apple provides the App Store and TestFlight and independently collects the information described in Apple&#x27;s own privacy policy — for example, whether the app was downloaded or crashed. The developer receives only aggregate figures.</p>
+<h2>Your rights and how to reach us</h2>
+<p>Because Foredeck holds your information only on your own device, requests to access, correct or erase it are satisfied by using the app: remove a cluster, or delete the app.
+
+Questions about this policy: kozlovskyaid@icloud.com.
+
+Last updated: 31 August 2026. Material changes will appear here and in a release note.</p>
+</div></div>
+<div class="links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+</div>
+<p class="trademark">
+    Kubernetes is a registered trademark of The Linux Foundation. Foredeck is an
+    independent client and is not affiliated with, endorsed by or sponsored by
+    The Linux Foundation or the Kubernetes project.
+    <br>&copy; 2026 Andrew Kozlowskiy
+</p>
+</body>
+</html>
