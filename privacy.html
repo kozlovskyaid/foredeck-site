@@ -72,9 +72,9 @@ a { color: #0b7fa0; }
 <div class="container"><div class="card legal">
 <a class="back" href="index.html">&larr; Back to Foredeck</a>
 <h2>The short version</h2>
-<p>Foredeck is a client for Kubernetes clusters you already have access to. It runs entirely on your device and talks to exactly one kind of server: the API server of a cluster you added yourself.
+<p>Foredeck is a client for Kubernetes clusters you already have access to. It runs on your device and talks to the API servers of clusters you added yourself — and, for Foredeck Pro, to the App Store and RevenueCat, which keep track of your purchase.
 
-Everything Foredeck stores — the list of clusters, their addresses, their credentials, your preferences — stays on this device.</p>
+Everything Foredeck stores about your clusters — the list of clusters, their addresses, their credentials, your preferences — stays on this device.</p>
 <h2>What Foredeck stores on your device</h2>
 <p>• The clusters you add: the name you give them, the server address, the certificate authority from the kubeconfig, and your display preferences. These are written to Foredeck&#x27;s own folder, which is protected by iOS file protection and included in your device backup if you take one.
 
@@ -82,7 +82,9 @@ Everything Foredeck stores — the list of clusters, their addresses, their cred
 
 Removing a cluster in Foredeck deletes both, including the keychain entries.</p>
 <h2>What leaves your device</h2>
-<p>Foredeck sends requests to the Kubernetes API servers you configure, over TLS, carrying the credentials you provided. That is the whole of its network activity, and every destination is one you typed in.
+<p>Foredeck sends requests to the Kubernetes API servers you configure, over TLS, carrying the credentials you provided. Every one of those destinations is one you typed in.
+
+To know whether you have Foredeck Pro, the app asks RevenueCat, the service that records App Store purchases for it. RevenueCat receives a random Foredeck ID made on your device (it names no one and is kept in your iCloud Keychain, so it survives a reinstall), the purchases made under it, and basic device information such as the iOS version and country of your App Store account. Nothing about your clusters is ever sent to it.
 
 The cluster&#x27;s replies — the state of your workloads, your logs, your events — are shown on screen and held in memory while you look at them. They are not written to disk and not sent anywhere else.</p>
 <h2>Diagnostics</h2>
@@ -90,15 +92,15 @@ The cluster&#x27;s replies — the state of your workloads, your logs, your even
 
 The developer has no way to see any of it.</p>
 <h2>Others involved</h2>
-<p>Foredeck contains no analytics, no advertising and no third-party software development kits. Its only dependency is a YAML parser, which runs on your device and reads text.
+<p>Foredeck contains no analytics and no advertising. Its third-party code is a YAML parser and a terminal emulator, which run on your device, and the RevenueCat SDK, which handles purchases as described above under RevenueCat&#x27;s own privacy policy (revenuecat.com/privacy).
 
 Apple provides the App Store and TestFlight and independently collects the information described in Apple&#x27;s own privacy policy — for example, whether the app was downloaded or crashed. The developer receives only aggregate figures.</p>
 <h2>Your rights and how to reach us</h2>
-<p>Because Foredeck holds your information only on your own device, requests to access, correct or erase it are satisfied by using the app: remove a cluster, or delete the app.
+<p>Information about your clusters lives only on your own device: remove a cluster, or delete the app, to erase it. To have your purchase record removed from RevenueCat, email us your Foredeck ID (Settings → Foredeck Pro).
 
 Questions about this policy: kozlovskyaid@icloud.com.
 
-Last updated: 31 August 2026. Material changes will appear here and in a release note.</p>
+Last updated: 16 October 2026. Material changes will appear here and in a release note.</p>
 </div></div>
 <div class="links">
     <a href="index.html">Home</a>
