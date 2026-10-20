@@ -72,7 +72,7 @@ a { color: #0b7fa0; }
 <div class="container"><div class="card legal">
 <a class="back" href="index.html">&larr; Back to Foredeck</a>
 <h2>The short version</h2>
-<p>Foredeck is a client for Kubernetes clusters you already have access to. It runs on your device and talks to the API servers of clusters you added yourself — and, for Foredeck Pro, to the App Store and RevenueCat, which keep track of your purchase.
+<p>Foredeck is a client for Kubernetes clusters you already have access to. It runs on your device and talks to the API servers of clusters you added yourself — and, for Foredeck Pro, to the App Store and RevenueCat, which keep track of your purchase. If you allow it, it also sends anonymous usage statistics to Amplitude; nothing from your clusters is ever part of them.
 
 Everything Foredeck stores about your clusters — the list of clusters, their addresses, their credentials, your preferences — stays on this device.</p>
 <h2>What Foredeck stores on your device</h2>
@@ -87,20 +87,28 @@ Removing a cluster in Foredeck deletes both, including the keychain entries.</p>
 To know whether you have Foredeck Pro, the app asks RevenueCat, the service that records App Store purchases for it. RevenueCat receives a random Foredeck ID made on your device (it names no one and is kept in your iCloud Keychain, so it survives a reinstall), the purchases made under it, and basic device information such as the iOS version and country of your App Store account. Nothing about your clusters is ever sent to it.
 
 The cluster&#x27;s replies — the state of your workloads, your logs, your events — are shown on screen and held in memory while you look at them. They are not written to disk and not sent anywhere else.</p>
+<h2>Usage statistics, only if you allow them</h2>
+<p>On first launch Foredeck asks whether it may send anonymous usage statistics. Nothing is sent, and the analytics component is not even started, until you choose Allow; you can change your answer at any time in Settings → Privacy.
+
+If you allow it, Foredeck sends Amplitude, Inc. (USA) events such as: the paywall was shown, a plan was bought, a cluster was added from a kubeconfig, a connection succeeded or failed, logs or a shell were opened, a session lasted between five and twenty minutes. Properties are chosen from fixed lists, and counts and durations are sent only as ranges. With each event go the app version, the iOS version, the device model, the language and the country — derived from your IP address by Amplitude, which does not store the address itself — and a random identifier made on your device.
+
+Never sent: anything from your clusters — names, addresses, namespaces, objects, YAML, logs, commands, error messages or credentials — and no account, no advertising identifier (IDFA), no identifier shared with other apps, no precise location. The statistics are not used for advertising, not combined with other data and not sold.
+
+Why: to learn which features are worth building and where people get stuck connecting a cluster. The legal basis is your consent (Article 6(1)(a) GDPR), which you can withdraw in Settings; turning it off stops sending and deletes the random identifier on your device. Amplitude keeps the data for up to one year. It is processed in the United States under the EU–US Data Privacy Framework or the European Commission&#x27;s Standard Contractual Clauses. Amplitude&#x27;s privacy notice: amplitude.com/privacy.</p>
 <h2>Diagnostics</h2>
 <p>Foredeck writes to the system log through Apple&#x27;s unified logging, which stays on your device unless you deliberately capture and share a sysdiagnose. Values that could identify your infrastructure are marked private and are redacted in those logs.
 
 The developer has no way to see any of it.</p>
 <h2>Others involved</h2>
-<p>Foredeck contains no analytics and no advertising. Its third-party code is a YAML parser and a terminal emulator, which run on your device, and the RevenueCat SDK, which handles purchases as described above under RevenueCat&#x27;s own privacy policy (revenuecat.com/privacy).
+<p>Foredeck contains no advertising. Its third-party code is a YAML parser and a terminal emulator, which run on your device; the RevenueCat SDK, which handles purchases as described above under RevenueCat&#x27;s own privacy policy (revenuecat.com/privacy); and the Amplitude SDK, which sends usage statistics only if you allow it, as described above.
 
 Apple provides the App Store and TestFlight and independently collects the information described in Apple&#x27;s own privacy policy — for example, whether the app was downloaded or crashed. The developer receives only aggregate figures.</p>
 <h2>Your rights and how to reach us</h2>
-<p>Information about your clusters lives only on your own device: remove a cluster, or delete the app, to erase it. To have your purchase record removed from RevenueCat, email us your Foredeck ID (Settings → Foredeck Pro).
+<p>Information about your clusters lives only on your own device: remove a cluster, or delete the app, to erase it. To have your purchase record removed from RevenueCat, email us your Foredeck ID (Settings → Foredeck Pro). Usage statistics carry no identifier we could match to you; switching them off in Settings deletes the random one on your device, and anything already sent expires at Amplitude within a year.
 
 Questions about this policy: kozlovskyaid@icloud.com.
 
-Last updated: 16 October 2026. Material changes will appear here and in a release note.</p>
+Last updated: 20 October 2026. Material changes will appear here and in a release note.</p>
 </div></div>
 <div class="links">
     <a href="index.html">Home</a>
