@@ -78,15 +78,21 @@ Everything Foredeck stores about your clusters — the list of clusters, their a
 <h2>What Foredeck stores on your device</h2>
 <p>• The clusters you add: the name you give them, the server address, the certificate authority from the kubeconfig, and your display preferences. These are written to Foredeck&#x27;s own folder, which is protected by iOS file protection and included in your device backup if you take one.
 
-• Cluster credentials: bearer tokens, usernames and passwords, and client certificates with their private keys. These are held in the iOS Keychain, marked so they stay on this device and are excluded from iCloud backups.
+• Cluster credentials: bearer tokens, usernames and passwords, and client certificates with their private keys — and, for a cluster added through a cloud account, that account&#x27;s API token, access key or sign-in. These are held in the iOS Keychain, marked so they stay on this device and are excluded from iCloud backups.
 
 Removing a cluster in Foredeck deletes both, including the keychain entries.</p>
 <h2>What leaves your device</h2>
-<p>Foredeck sends requests to the Kubernetes API servers you configure, over TLS, carrying the credentials you provided. Every one of those destinations is one you typed in.
+<p>Foredeck sends requests to the Kubernetes API servers you configure, over TLS, carrying the credentials you provided. Every one of those destinations is one you typed in, or one your cloud provider listed for you after you signed in to it (see Cloud accounts below).
 
 To know whether you have Foredeck Pro, the app asks RevenueCat, the service that records App Store purchases for it. RevenueCat receives a random Foredeck ID made on your device (it names no one and is kept in your iCloud Keychain, so it survives a reinstall), the purchases made under it, and basic device information such as the iOS version and country of your App Store account. Nothing about your clusters is ever sent to it.
 
 The cluster&#x27;s replies — the state of your workloads, your logs, your events — are shown on screen and held in memory while you look at them. They are not written to disk and not sent anywhere else.</p>
+<h2>Cloud accounts</h2>
+<p>You can add clusters by signing in to a cloud account instead of importing a kubeconfig: a DigitalOcean API token, an AWS access key, or your Google account. Foredeck then talks directly to that provider — DigitalOcean, Amazon Web Services or Google Cloud — to list your clusters, read each one&#x27;s address and certificate authority, and obtain the short-lived token the cluster accepts. Nothing passes through any server of the developer, who never sees the account, the key or the clusters.
+
+The token, key or sign-in is kept in the iOS Keychain on this device, used only for the requests above, and deleted when you remove the last cluster that uses it.
+
+Google user data. When you sign in with Google, Foredeck requests the &quot;See, edit, configure and delete your Google Cloud data&quot; permission (scope cloud-platform) and your email address. It uses them only to list the Google Cloud projects and Google Kubernetes Engine clusters your account can see, and to open the clusters you choose, acting with exactly the permissions your account has in IAM and in the cluster. Your email address is shown in the app so you can tell which account a cluster belongs to. Foredeck does not read, store or send any other Google data; it creates, changes or deletes something in a cluster only when you tell it to. The data received from Google is kept on your device, is not transferred to the developer or anyone else, is not used for advertising, and is not used to train AI or machine-learning models. Foredeck&#x27;s use and transfer of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements. You can revoke Foredeck&#x27;s access at any time at myaccount.google.com/permissions.</p>
 <h2>Usage statistics, only if you allow them</h2>
 <p>On first launch Foredeck asks whether it may send anonymous usage statistics. Nothing is sent, and the analytics component is not even started, until you choose Allow; you can change your answer at any time in Settings → Privacy.
 
@@ -108,7 +114,7 @@ Apple provides the App Store and TestFlight and independently collects the infor
 
 Questions about this policy: kozlovskyaid@icloud.com.
 
-Last updated: 20 October 2026. Material changes will appear here and in a release note.</p>
+Last updated: 9 November 2026. Material changes will appear here and in a release note.</p>
 </div></div>
 <div class="links">
     <a href="index.html">Home</a>
