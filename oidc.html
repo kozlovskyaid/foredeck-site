@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Returning to Foredeck…</title>
+<style>
+  :root { color-scheme: light dark; --bg: #ffffff; --fg: #111418; --muted: #5b6470; --accent: #2f6fed; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f1216; --fg: #e8ebef; --muted: #98a2ae; --accent: #6c9cff; } }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+         padding: 24px; box-sizing: border-box; text-align: center; background: var(--bg); color: var(--fg);
+         font: 17px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .box { max-width: 420px; }
+  h1 { font-size: 1.4em; margin: 0 0 12px; }
+  p { color: var(--muted); margin: 0 0 20px; }
+  a.button { display: inline-block; padding: 12px 22px; border-radius: 12px; background: var(--accent);
+             color: #fff; text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Returning to Foredeck…</h1>
+  <p>Your cluster's sign-in has finished. This page hands the result back to the app.</p>
+  <p><a class="button" id="open" href="app.drew.foredeck://oidc/callback">Open Foredeck</a></p>
+</div>
+<script>
+  // Identity providers such as OpenUnison accept only http(s) redirect URLs
+  // for the kubectl client, while Foredeck's sign-in sheet waits for its own
+  // scheme. This page is the bridge: it forwards the query string — the
+  // authorization code and the state — to the app on the same device, and the
+  // sheet closes as soon as it sees the scheme. Nothing is stored or sent
+  // anywhere; the code is useless without the verifier only the app holds.
+  (function () {
+    var target = 'app.drew.foredeck://oidc/callback' + window.location.search;
+    document.getElementById('open').setAttribute('href', target);
+    window.location.replace(target);
+  })();
+</script>
+</body>
+</html>
