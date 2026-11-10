@@ -88,9 +88,11 @@ To know whether you have Foredeck Pro, the app asks RevenueCat, the service that
 
 The cluster&#x27;s replies — the state of your workloads, your logs, your events — are shown on screen and held in memory while you look at them. They are not written to disk and not sent anywhere else.</p>
 <h2>Cloud accounts</h2>
-<p>You can add clusters by signing in to a cloud account instead of importing a kubeconfig: a DigitalOcean or Linode API token, an AWS access key, a Microsoft Entra service principal, a Yandex Cloud service account key, or your Google account. Foredeck then talks directly to that provider — DigitalOcean, Akamai Cloud (Linode), Amazon Web Services, Microsoft Azure, Yandex Cloud or Google Cloud — to list your clusters, read each one&#x27;s address and certificate authority, and obtain the short-lived token the cluster accepts. Nothing passes through any server of the developer, who never sees the account, the key or the clusters.
+<p>You can add clusters by signing in to a cloud account instead of importing a kubeconfig: a DigitalOcean or Linode API token, an AWS access key, a Microsoft Entra service principal, a Yandex Cloud service account key, or your Google account. Foredeck then talks directly to that provider — DigitalOcean, Akamai Cloud (Linode), Amazon Web Services, Microsoft Azure, Yandex Cloud or Google Cloud — to list your clusters, read each one&#x27;s address and certificate authority, and obtain the short-lived token the cluster accepts. Nothing passes through any server of the developer, who never sees the account, the key or the clusters. You can also sign in through your organisation&#x27;s OpenID Connect identity provider, such as OpenUnison, Dex or Keycloak, in the system sign-in sheet, or by pasting the credentials it gives you.
 
 For Yandex Cloud the service account key never leaves the device: Foredeck signs a short request with it on the phone and sends only that signature to Yandex Cloud in exchange for a temporary token.
+
+For an OpenID Connect sign-in, Foredeck talks only to the identity provider named in your kubeconfig or entered by you, to renew the short-lived token your cluster accepts; the refresh token and ID token are kept in the iOS Keychain on this device and are never sent to the developer.
 
 The token, key or sign-in is kept in the iOS Keychain on this device, used only for the requests above, and deleted when you remove the last cluster that uses it.
 
@@ -116,7 +118,7 @@ Apple provides the App Store and TestFlight and independently collects the infor
 
 Questions about this policy: kozlovskyaid@icloud.com.
 
-Last updated: 9 November 2026. Material changes will appear here and in a release note.</p>
+Last updated: 10 November 2026. Material changes will appear here and in a release note.</p>
 </div></div>
 <div class="links">
     <a href="index.html">Home</a>
